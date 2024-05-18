@@ -8,7 +8,7 @@
         <h1 class="text-3xl font-bold">Всі кросівки</h1>
         <div class="flex items-center gap-4">
           <select
-            @change="onChangeSelect"
+            v-model="filters.sortBy"
             class="py-2 px-3 border border-gray-200 focus:border-gray-400 rounded-md focus:outline-none"
           >
             <option value="name">По назві</option>
@@ -17,6 +17,7 @@
           </select>
           <div class="relative">
             <input
+              v-model="filters.searchQuery"
               type="text"
               class="border border-gray-200 rounded-md py-2 pl-10 pr-4 focus:outline-none focus:border-gray-400"
               placeholder="Пошук..."
@@ -33,7 +34,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, reactive, onMounted, watch } from 'vue'
 import axios from 'axios'
 
 import Header from './components/Header.vue'
@@ -42,31 +43,31 @@ import CardList from './components/CardList.vue'
 import Drawer from './components/Drawer.vue'
 
 const items = ref([])
-const sortBy = ref('')
-const searchQuery = ref('')
-
-
-const onChangeSelect = (event) => {
-   sortBy.value = event.target.value
-}
+const filters = reactive({
+  sortBy: 'name',
+  searchQuery: ''
+})
 
 const getFetch = async () => {
   try {
-    const res = await axios.get('https://657eea2aac18512f.mokky.dev/items')
+    const params = {
+      sortBy: filters.sortBy
+    }
+
+    if (filters.searchQuery) {
+      params.title = `*${filters.searchQuery}*`
+    }
+
+    const res = await axios.get('https://657eea2aac18512f.mokky.dev/items', {
+      params
+    })
     items.value = await res.data
   } catch (e) {
     console.log(e)
   }
 }
 
-watch(sortBy, async () => {
-  try {
-    const res = await axios.get('https://657eea2aac18512f.mokky.dev/items?sortBy=' + sortBy.value)
-    items.value = await res.data
-  } catch (e) {
-    console.log(e)
-  }
-})
+watch(filters, getFetch)
 
 onMounted(getFetch)
 </script>
