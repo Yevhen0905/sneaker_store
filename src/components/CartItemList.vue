@@ -1,14 +1,21 @@
 <template>
-  <div class="flex flex-col gap-5">
+  <div class="flex flex-col gap-5" v-auto-animate>
     <CartItem
-      title="Мужские Кроссовки Nike Blazer Mid Suede"
-      price="1000"
-      img="/sneakers/sneakers-1.jpg"
+      v-for="item in cart"
+      :key="item.id"
+      :id="item.id"
+      :title="item.title"
+      :price="item.price"
+      :img="item.imageUrl"
+      @on-click-remove="() => removeFromCart(item)"
     />
-    
   </div>
 </template>
 
 <script setup>
+import { inject } from 'vue'
+
 import CartItem from './CartItem.vue'
+
+const { cart, removeFromCart } = inject('cart')
 </script>

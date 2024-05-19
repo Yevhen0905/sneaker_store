@@ -1,13 +1,16 @@
 <template>
-  <div class="grid grid-cols-4 gap-10">
+  <div v-auto-animate class="grid grid-cols-4 gap-10">
     <Card
       v-for="item in items"
       :key="item.id"
+      :id="item.id"
       :title="item.title"
       :price="item.price"
       :img="item.imageUrl"
-      is-added="true"
-      is-favorite="true"
+      :is-favorite="item.isFavorite"
+      :is-added="item.isAdded"
+      :onClickFavorite="isFavorites ? null : () => emit('addToFavorite', item)"
+      :onClickAdd="isFavorites ? null : () => emit('addToCart', item)"
     />
   </div>
 </template>
@@ -19,6 +22,9 @@ const props = defineProps({
   items: {
     type: Array,
     required: true
-  }
+  },
+  isFavorites: Boolean
 })
+
+const emit = defineEmits(['addToFavorite', 'addToCart'])
 </script>

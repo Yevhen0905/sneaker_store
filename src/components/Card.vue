@@ -2,10 +2,10 @@
   <div
     class="relative flex flex-col w-full border border-slate-100 rounded-xl p-8 cursor-pointer transition hover:shadow-xl hover:transform hover:-translate-y-2"
   >
-    <div @click="onClick" class="absolute top-8 left-8">
+    <div v-if="onClickFavorite" class="absolute top-8 left-8">
       <img
         @click="onClickFavorite"
-        :src="!isFavorite ? '/like-1.svg' : '/like-2.svg'"
+        :src="isFavorite ? '/like-2.svg' : '/like-1.svg'"
         alt="Favorite"
       />
     </div>
@@ -16,7 +16,12 @@
         <span class="text-slate-200">Ціна:</span>
         <span class="font-bold">{{ price }} грн.</span>
       </div>
-      <img @click="onClickAdd" :src="!isAdded ? '/plus.svg' : '/checked.svg'" alt="Plus" />
+      <img
+        v-if="onClickAdd"
+        @click="onClickAdd"
+        :src="!isAdded ? '/plus.svg' : '/checked.svg'"
+        alt="Plus"
+      />
     </div>
   </div>
 </template>
@@ -26,6 +31,7 @@ import { ref } from 'vue'
 
 const props = defineProps({
   title: String,
+  id: Number,
   img: String,
   price: Number,
   isFavorite: Boolean,
@@ -33,10 +39,4 @@ const props = defineProps({
   onClickFavorite: Function,
   onClickAdd: Function
 })
-
-const isLiked = ref(false)
-
-const onClick = () => {
-  isLiked.value = !isLiked.value
-}
 </script>
