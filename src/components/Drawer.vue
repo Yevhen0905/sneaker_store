@@ -65,7 +65,7 @@ const props = defineProps({
 const isCreating = ref(false)
 const orderId = ref(null)
 
-const { cart, closeDrawer } = inject('cart')
+const { cart } = inject('cart')
 
 const cartIsEmpty = computed(() => cart.value.length === 0)
 
