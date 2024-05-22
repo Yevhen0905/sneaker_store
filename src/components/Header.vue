@@ -1,7 +1,7 @@
 <template>
-  <header class="flex justify-between border-b border-slate-200 px-10 py-8">
+  <header class="flex justify-between laptop:flex-col laptop:items-center border-b border-slate-200 px-10 py-8">
     <router-link to="/">
-      <div class="flex items-center gap-4">
+      <div class="flex items-center laptop:mb-10 gap-4">
         <img src="/logo.png" alt="Logo" class="w-11" />
         <div>
           <h2 class="font-bold text-xl uppercase">Vue Sneakers</h2>

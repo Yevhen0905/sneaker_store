@@ -1,9 +1,11 @@
 <template>
   <Drawer v-if="drawerOpen" :total-price="totalPrice" :vat-price="vatPrice" />
-  <div class="bg-white w-4/5 m-auto rounded-xl shadow-xl shadow-grey-200 mt-20">
+  <div
+    class="bg-white w-4/5 laptop:w-auto laptop:mx-5 m-auto rounded-xl shadow-xl shadow-grey-200 mt-20"
+  >
     <Header :total-price="totalPrice" @open-drawer="openDrawer" />
 
-    <div class="p-10">
+    <div class="p-10 tablet:p-3">
       <router-view></router-view>
     </div>
   </div>
@@ -15,7 +17,6 @@ import { ref, computed, provide, watch } from 'vue'
 import Header from './components/Header.vue'
 import Drawer from './components/Drawer.vue'
 
-/*корзина*/
 const cart = ref([])
 const drawerOpen = ref(false)
 
@@ -62,6 +63,4 @@ watch(
     deep: true
   }
 )
-
-/*корзина*/
 </script>
