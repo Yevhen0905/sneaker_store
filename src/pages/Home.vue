@@ -103,7 +103,6 @@ const getItems = async () => {
       favoriteId: null,
       isAdded: false
     }))
-    console.log(items.value)
   } catch (e) {
     console.log(e)
   }
