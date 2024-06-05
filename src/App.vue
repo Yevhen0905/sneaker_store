@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import { ref, computed, provide, watch } from 'vue'
+import { ref, computed, provide, watch, onMounted } from 'vue'
 
 import Header from './components/Header.vue'
 import Drawer from './components/Drawer.vue'
@@ -52,7 +52,6 @@ const removeFromCart = (item) => {
 provide('cart', {
   cart,
   closeDrawer,
-  openDrawer,
   addToCart,
   removeFromCart
 })
@@ -66,4 +65,9 @@ watch(
     deep: true
   }
 )
+
+onMounted(() => {
+  cart.value = JSON.parse(localStorage.getItem('cart')) || []
+})
+
 </script>

@@ -42,22 +42,26 @@ const filters = reactive({
 
 const { cart, addToCart, removeFromCart } = inject('cart')
 
-const addToFavorite = async (item) => {
+const getItems = async () => {
   try {
-    if (!item.isFavorite) {
-      const obj = {
-        parentId: item.id,
-        item
-      }
-      item.isFavorite = true
-
-      const { data } = await axios.post('https://657eea2aac18512f.mokky.dev/favorites', obj)
-      item.favoriteId = data.id
-    } else {
-      item.isFavorite = false
-      await axios.delete(`https://657eea2aac18512f.mokky.dev/favorites/${item.favoriteId}`)
-      item.favoriteId = null
+    const params = {
+      sortBy: filters.sortBy
     }
+
+    if (filters.searchQuery) {
+      params.title = `*${filters.searchQuery}*`
+    }
+
+    const { data } = await axios.get('https://657eea2aac18512f.mokky.dev/items', {
+      params
+    })
+
+    items.value = await data.map((obg) => ({
+      ...obg,
+      isFavorite: false,
+      favoriteId: null,
+      isAdded: false
+    }))
   } catch (e) {
     console.log(e)
   }
@@ -84,25 +88,22 @@ const getFavorites = async () => {
   }
 }
 
-const getItems = async () => {
+const addToFavorite = async (item) => {
   try {
-    const params = {
-      sortBy: filters.sortBy
-    }
+    if (!item.isFavorite) {
+      const obj = {
+        parentId: item.id,
+        item
+      }
+      item.isFavorite = true
 
-    if (filters.searchQuery) {
-      params.title = `*${filters.searchQuery}*`
+      const { data } = await axios.post('https://657eea2aac18512f.mokky.dev/favorites', obj)
+      item.favoriteId = data.id
+    } else {
+      item.isFavorite = false
+      await axios.delete(`https://657eea2aac18512f.mokky.dev/favorites/${item.favoriteId}`)
+      item.favoriteId = null
     }
-
-    const { data } = await axios.get('https://657eea2aac18512f.mokky.dev/items', {
-      params
-    })
-    items.value = await data.map((obg) => ({
-      ...obg,
-      isFavorite: false,
-      favoriteId: null,
-      isAdded: false
-    }))
   } catch (e) {
     console.log(e)
   }
@@ -126,8 +127,6 @@ watch(cart, () => {
 })
 
 onMounted(async () => {
-  cart.value = JSON.parse(localStorage.getItem('cart')) || []
-
   await getItems()
   await getFavorites()
 

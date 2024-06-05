@@ -80,7 +80,7 @@ const createOrder = async () => {
       totalPrice: props.totalPrice
     })
 
-    cart.value = [cart.value]
+    cart.value = []
     orderId.value = data.id
   } catch (e) {
     console.log(e)
