@@ -7,7 +7,7 @@
         <img src="/logo.png" alt="Logo" class="w-11" />
         <div>
           <h2 class="font-bold text-xl uppercase">Vue Sneakers</h2>
-          <p class="text-slate-400">Магазин кращих кросівок</p>
+          <p class="text-slate-400">Shop for the best sneakers</p>
         </div>
       </div>
     </router-link>
@@ -18,23 +18,23 @@
         class="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-black"
       >
         <img src="/cart.svg" alt="Cart" />
-        <b>{{ totalPrice }} грн.</b>
+        <b>{{ totalPrice }} UAH</b>
       </li>
       <router-link to="/favorites">
         <li class="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-black">
           <img src="/heart.svg" alt="Favorite" />
-          <span>Закладки</span>
+          <span>Favorites</span>
         </li></router-link
       >
       <router-link to="/orders">
         <li class="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-black">
           <img class="w-5" src="/order-success-icon.png" alt="" />
-          <span>Оформлені замовлення</span>
+          <span>Placed orders</span>
         </li>
       </router-link>
       <li class="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-black">
         <img src="/profile.svg" alt="Favorite" />
-        <span>Профіль</span>
+        <span>Profile</span>
       </li>
     </ul>
   </header>

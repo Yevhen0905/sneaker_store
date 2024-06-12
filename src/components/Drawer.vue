@@ -8,14 +8,14 @@
     <div v-if="!totalPrice || orderId" class="flex h-full items-center">
       <InfoBlock
         v-if="!totalPrice && !orderId"
-        title="Корзина порожня"
-        text="Додати товар"
+        title="Cart is empty"
+        text="Add a product"
         imgUrl="/package-icon.png"
       />
       <InfoBlock
         v-if="orderId"
-        title="Замовлення оформлено"
-        :text="`Ваше замовлення №${orderId}`"
+        title="The order has been placed"
+        :text="`Your order №${orderId}`"
         imgUrl="/order-success-icon.png"
       />
     </div>
@@ -25,15 +25,15 @@
 
       <div class="flex flex-col gap-5">
         <div class="flex items-end gap-2">
-          <span>Загалом:</span>
+          <span>Total:</span>
           <div class="flex-1 border-b border-dashed" />
-          <span class="font-bold">{{ totalPrice }} грн.</span>
+          <span class="font-bold">{{ totalPrice }} UAH</span>
         </div>
 
         <div class="flex items-end gap-2">
-          <span>податок 5%:</span>
+          <span>tax 5%:</span>
           <div class="flex-1 border-b border-dashed" />
-          <span class="font-bold">{{ vatPrice }} грн.</span>
+          <span class="font-bold">{{ vatPrice }} UAH</span>
         </div>
 
         <button
@@ -41,7 +41,7 @@
           :disabled="cartButtonDisabled"
           class="disabled:bg-slate-300 flex justify-center items-center gap-3 w-full py-3 mt-10 bg-lime-500 text-white rounded-xl transition active:bg-lime-700 hover:bg-lime-600 cursor-pointer"
         >
-          Оформити замовлення
+          Place an order
           <img src="/arrow-next.svg" alt="Arrow" />
         </button>
       </div>

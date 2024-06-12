@@ -69,5 +69,4 @@ watch(
 onMounted(() => {
   cart.value = JSON.parse(localStorage.getItem('cart')) || []
 })
-
 </script>
