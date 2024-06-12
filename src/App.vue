@@ -4,7 +4,11 @@
     <div
       class="bg-white w-4/5 laptop:w-auto laptop:mx-5 m-auto rounded-xl shadow-xl shadow-grey-200 mt-20"
     >
-      <Header :total-price="totalPrice" @open-drawer="openDrawer" />
+      <Header
+        :total-price="totalPrice"
+        @open-drawer="openDrawer"
+        :countFavoriteItem="countFavoriteProduct"
+      />
 
       <div class="p-10 tablet:p-3">
         <router-view></router-view>
@@ -20,7 +24,7 @@ import Header from './components/Header.vue'
 import Drawer from './components/Drawer.vue'
 
 const cart = ref([])
-
+const countFavoriteProduct = ref(0)
 const drawerOpen = ref(false)
 
 const totalPrice = computed(() => {
@@ -55,6 +59,8 @@ provide('cart', {
   addToCart,
   removeFromCart
 })
+
+provide('favorite', countFavoriteProduct)
 
 watch(
   cart,

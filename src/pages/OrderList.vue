@@ -56,7 +56,6 @@ const getOrders = async () => {
   try {
     const { data } = await axios.get('https://657eea2aac18512f.mokky.dev/orders')
     orders.value = data
-    console.log(orders.value)
   } catch (e) {
     console.log()
   }

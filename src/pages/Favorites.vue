@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="favorites.length">
-      <h1 class="text-3xl font-bold">Favorites</h1>
+      <h1 class="text-3xl font-bold mb-5">Favorites</h1>
       <CardList :items="favorites" is-favorites />
     </div>
     <div v-else class="flex h-full items-center">

@@ -29,7 +29,8 @@
 </template>
 
 <script setup>
-import { ref, reactive, inject, watch, onMounted } from 'vue'
+import { ref, computed, reactive, inject, watch, onMounted } from 'vue'
+
 import axios from 'axios'
 
 import CardList from '../components/CardList.vue'
@@ -40,7 +41,14 @@ const filters = reactive({
   searchQuery: ''
 })
 
+const emit = defineEmits(['update-favorite-count'])
+
 const { cart, addToCart, removeFromCart } = inject('cart')
+const countFavoriteProduct = inject('favorite')
+
+const countFavoriteItem = computed(() => {
+  return items.value.filter((item) => item.isFavorite).length
+})
 
 const getItems = async () => {
   try {
@@ -83,6 +91,7 @@ const getFavorites = async () => {
         favoriteId: favorite.id
       }
     })
+    console.log(items.value)
   } catch (e) {
     console.log(e)
   }
@@ -125,6 +134,14 @@ watch(cart, () => {
     isAdded: false
   }))
 })
+
+watch(
+  countFavoriteItem,
+  () => {
+    countFavoriteProduct.value = countFavoriteItem.value
+  },
+  { immediate: true }
+)
 
 onMounted(async () => {
   await getItems()

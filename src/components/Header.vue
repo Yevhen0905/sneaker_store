@@ -21,9 +21,14 @@
         <b>{{ totalPrice }} UAH</b>
       </li>
       <router-link to="/favorites">
-        <li class="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-black">
+        <li
+          class="header_favorite flex items-center gap-2 cursor-pointer text-gray-500 hover:text-black"
+        >
           <img src="/heart.svg" alt="Favorite" />
           <span>Favorites</span>
+          <span v-if="countFavoriteItem" class="header_favorite_count">{{
+            countFavoriteItem
+          }}</span>
         </li></router-link
       >
       <router-link to="/orders">
@@ -42,8 +47,30 @@
 
 <script setup>
 const props = defineProps({
-  totalPrice: Number
+  totalPrice: Number,
+  countFavoriteItem: Number
 })
 
 const emit = defineEmits(['openDrawer'])
 </script>
+
+<style lang="scss">
+.header_favorite {
+  position: relative;
+
+  &_count {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 17px;
+    height: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #efadad;
+    color: #fff;
+    font-size: 12px;
+  }
+}
+</style>
