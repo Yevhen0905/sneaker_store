@@ -6,8 +6,9 @@
     >
       <Header
         :total-price="totalPrice"
-        @open-drawer="openDrawer"
+        :cart="cart"
         :countFavoriteItem="countFavoriteProduct"
+        @open-drawer="openDrawer"
       />
 
       <div class="p-10 tablet:p-3">

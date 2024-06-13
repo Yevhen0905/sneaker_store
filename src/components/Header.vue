@@ -6,7 +6,7 @@
       <div class="flex items-center laptop:mb-10 gap-4">
         <img src="/logo.png" alt="Logo" class="w-11" />
         <div>
-          <h2 class="font-bold text-xl uppercase">Vue Sneakers</h2>
+          <h2 class="font-bold text-xl uppercase">Sneakers</h2>
           <p class="text-slate-400">Shop for the best sneakers</p>
         </div>
       </div>
@@ -15,20 +15,19 @@
     <ul class="flex items-center gap-10">
       <li
         @click="emit('openDrawer')"
-        class="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-black"
+        class="header_count flex items-center gap-2 cursor-pointer text-gray-500 hover:text-black"
       >
         <img src="/cart.svg" alt="Cart" />
         <b>{{ totalPrice }} UAH</b>
+        <span v-if="cart.length" class="header_count_number">{{ cart.length }}</span>
       </li>
       <router-link to="/favorites">
         <li
-          class="header_favorite flex items-center gap-2 cursor-pointer text-gray-500 hover:text-black"
+          class="header_count flex items-center gap-2 cursor-pointer text-gray-500 hover:text-black"
         >
           <img src="/heart.svg" alt="Favorite" />
           <span>Favorites</span>
-          <span v-if="countFavoriteItem" class="header_favorite_count">{{
-            countFavoriteItem
-          }}</span>
+          <span v-if="countFavoriteItem" class="header_count_number">{{ countFavoriteItem }}</span>
         </li></router-link
       >
       <router-link to="/orders">
@@ -47,6 +46,7 @@
 
 <script setup>
 const props = defineProps({
+  cart: Array,
   totalPrice: Number,
   countFavoriteItem: Number
 })
@@ -55,10 +55,10 @@ const emit = defineEmits(['openDrawer'])
 </script>
 
 <style lang="scss">
-.header_favorite {
+.header_count {
   position: relative;
 
-  &_count {
+  &_number {
     position: absolute;
     top: -5px;
     left: -5px;
