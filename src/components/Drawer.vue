@@ -10,13 +10,13 @@
         v-if="!totalPrice && !orderId"
         title="Cart is empty"
         text="Add a product"
-        imgUrl="/package-icon.png"
+        imgUrl="package-icon.png"
       />
       <InfoBlock
         v-if="orderId"
         title="The order has been placed"
         :text="`Your order №${orderId}`"
-        imgUrl="/order-success-icon.png"
+        imgUrl="order-success-icon.png"
       />
     </div>
 

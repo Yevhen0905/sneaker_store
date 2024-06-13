@@ -5,7 +5,7 @@
     <div v-if="onClickFavorite" class="absolute top-8 left-8">
       <img
         @click="onClickFavorite"
-        :src="isFavorite ? '/like-2.svg' : '/like-1.svg'"
+        :src="isFavorite ? 'like-2.svg' : 'like-1.svg'"
         alt="Favorite"
       />
     </div>
@@ -19,7 +19,7 @@
       <img
         v-if="onClickAdd"
         @click="onClickAdd"
-        :src="!isAdded ? '/plus.svg' : '/checked.svg'"
+        :src="!isAdded ? 'plus.svg' : 'checked.svg'"
         alt="Plus"
       />
     </div>
