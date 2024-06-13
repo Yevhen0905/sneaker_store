@@ -5,7 +5,7 @@ import Favorites from '../pages/Favorites.vue'
 import OrderList from '../pages/OrderList.vue'
 
 const router = createRouter({
-  history: createWebHistory('/sneaker_store/'),
+  history: createWebHistory(),
   routes: [
     { path: '/', name: 'Home', component: Home },
     { path: '/favorites', name: 'Favorites', component: Favorites },

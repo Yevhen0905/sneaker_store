@@ -2,7 +2,7 @@
   <div
     class="relative flex flex-col w-full border border-slate-150 rounded-xl p-6 cursor-pointer transition hover:shadow-xl hover:transform hover:-translate-y-2"
   >
-    <div v-if="onClickFavorite" class="absolute top-8 left-8">
+    <div v-if="onClickFavorite" class="absolute">
       <img
         @click="onClickFavorite"
         :src="isFavorite ? 'like-2.svg' : 'like-1.svg'"

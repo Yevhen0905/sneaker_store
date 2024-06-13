@@ -5,7 +5,7 @@
       <CardList :items="favorites" is-favorites />
     </div>
     <div v-else class="flex h-full items-center">
-      <InfoBlock title="Bookmarks are empty" imgUrl="/emoji-1.png" />
+      <InfoBlock title="Bookmarks are empty" imgUrl="emoji-1.png" />
     </div>
   </div>
 </template>
