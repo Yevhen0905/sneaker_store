@@ -1,6 +1,6 @@
 <template>
   <header
-    class="flex justify-between laptop:flex-col laptop:items-center border-b border-slate-200 px-10 py-8"
+    class="flex justify-between laptop:flex-col laptop:items-center tablet:px-3 border-b border-slate-200 px-10 py-8"
   >
     <router-link to="/">
       <div class="flex items-center laptop:mb-10 gap-4">
@@ -12,7 +12,7 @@
       </div>
     </router-link>
 
-    <ul class="flex items-center gap-10">
+    <ul class="flex items-center gap-10 header_list">
       <li
         @click="emit('openDrawer')"
         class="header_count flex items-center gap-2 cursor-pointer text-gray-500 hover:text-black"
@@ -71,6 +71,14 @@ const emit = defineEmits(['openDrawer'])
     background-color: #efadad;
     color: #fff;
     font-size: 12px;
+  }
+}
+
+.header_list {
+  @media (max-width: 630px) {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 25px;
   }
 }
 </style>
