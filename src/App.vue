@@ -10,7 +10,6 @@
         :countFavoriteItem="countFavoriteProduct"
         @open-drawer="openDrawer"
       />
-
       <div class="p-10 tablet:p-3">
         <router-view></router-view>
       </div>

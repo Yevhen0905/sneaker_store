@@ -1,6 +1,10 @@
 <template>
   <div>
     <h1 class="text-3xl font-bold mb-5">List orders</h1>
+    <div v-if="!orders.length && !showInfoBlock" class="lds-ripple">
+      <div></div>
+      <div></div>
+    </div>
     <div
       v-if="orders.length"
       v-auto-animate
@@ -42,7 +46,9 @@
         </div>
       </div>
     </div>
-    <div v-else class="text-center text-xl">Empty</div>
+    <div v-else class="text-center text-xl">
+      <InfoBlock v-if="showInfoBlock" title="Orders are empty" imgUrl="emoji-1.png" />
+    </div>
   </div>
 </template>
 
@@ -50,12 +56,18 @@
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
+import InfoBlock from '../components/InfoBlock.vue'
+
 const orders = ref([])
+const showInfoBlock = ref(false)
 
 const getOrders = async () => {
   try {
     const { data } = await axios.get('https://657eea2aac18512f.mokky.dev/orders')
     orders.value = data
+    setTimeout(() => {
+      showInfoBlock.value = true
+    }, 300)
   } catch (e) {
     console.log()
   }

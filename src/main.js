@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import './style.css'
+import './assets/style.scss'
 import router from './router'
 import { autoAnimatePlugin } from '@formkit/auto-animate/vue'
 import App from './App.vue'
